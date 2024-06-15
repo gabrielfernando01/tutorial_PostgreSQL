@@ -70,4 +70,4 @@ In database jargon, PostgreSQL, use a client/server model. A PostgreSQL session 
 
 - A server process, which manages the database files, accepts connections to the database from client application, and performs database actions on behalf of clients. The database server program is called <code>postgres</code>.
 
-- The user's client (frontend) application that wants to perform database operation. Client applications can be very diverse in nature: a client could be a text-oriented tool, a graphical application, a web server that accesses the database to display web pages, or a specialized database maintenance tool. Some client application are supplied with the PostgreSQL distrubution; most are developed by users.
+- The user's client (frontend) application that wants to perform database operation. Client applications can be very diverse in nature: a client could be a text-oriented tool, a graphical application, a web server that accesses the database to display web pages, or a specialized database maintenance tool. Some client application are supplied with the PostgreSQL
