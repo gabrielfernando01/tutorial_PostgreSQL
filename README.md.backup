@@ -56,7 +56,7 @@ $ sudo apt -y install postgresql
 $ systemctl enable postgresql
 
 # Show status of postgresql
-$ systemclt status postgresql
+$ systemctl status postgresql
 
 # Show version of PostgreSQL
 $ sudo -u postgres psql -c "SELECT version();"
@@ -70,4 +70,100 @@ In database jargon, PostgreSQL, use a client/server model. A PostgreSQL session 
 
 - A server process, which manages the database files, accepts connections to the database from client application, and performs database actions on behalf of clients. The database server program is called <code>postgres</code>.
 
-- The user's client (frontend) application that wants to perform database operation. Client applications can be very diverse in nature: a client could be a text-oriented tool, a graphical application, a web server that accesses the database to display web pages, or a specialized database maintenance tool. Some client application are supplied with the PostgreSQL
+- The user's client (frontend) application that wants to perform database operation. Client applications can be very diverse in nature: a client could be a text-oriented tool, a graphical application, a web server that accesses the database to display web pages, or a specialized database maintenance tool. Some client application are supplied with the PostgreSQL distrubution; most are developed by users.
+
+As a typical of client/server application, the client and the server can be on different host. In that case they communicate over a TCP/IP network connection. You should keep this in mind, because the files that can be accessed on a client machine might not be accessible (or might only be accessible using a difrent file name) on the database server machine.
+
+**1.3 Creating a Database**
+
+The first to see whether you can access the database server is to try to create a database. A running PostgreSQL server can manage many database. Typically, a separate database is used for each project of for each user.
+
+```
+# Switch defect user
+$ sudo -i -u postgres
+$ psql
+
+# Or access from terminal
+$ sudo -u postgres psql
+
+# Create role
+postgres=# CREATE ROLE name WITH LOGIN SUPERUSER CREATEDB CREATEROLE;
+postgres=# \exit		
+
+```
+
+To create a new database, in this example named <code>mydb</code>, you use the following command:
+
+<code>$ createdb mydb</code>
+
+If you do not want to use your database anymore you can remove it. For example, if you are the owner (creator) of the database <code>mydb</code>, you can destroy it using the following command:
+
+<code>$ dropdb mydb</code>
+
+**1.4 Accessing a Database**
+
+Once you have created a database, you can access it by:
+
+- Running the PostgreSQL, interactive terminal program, called _psql_, which allows you to interactively enter, edit, and excecute SQL commands.
+- Using an existing graphical frontend tool like pgAdmin or an office suite with ODBC or JDBC support to create and manipulate a database. These possibilities are not covered in this tutorial.
+- Writting a custom application, using one of the several avaible language bindings.
+
+Yoy can be activated <code>mydb</code> by typing the command:
+
+<code>$ psql mydb
+
+You should see something like:
+
+<code>mydb=#</code>
+
+These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <psql>. Try out these commands:  
+
+<code>mydb=# **SELECT version();**</code>
+<code>mydb=# **SELECT current_date;**</code>
+
+```
+# You can get help on the syntax of various PostgreSQL SQL commands by typing:
+mydb=# \h
+
+# To getout of psql, type:
+mydb=# \q
+```
+
+For more internal commands, type <code>\?</code> at the <code>psql</code> prompt.
+
+### Chapter 2. The SQL Language
+
+**2.1 Introduction**
+
+To start the tutorial, do the following:
+
+<code>$ psql -s mydb</code>
+
+**2.2 Concepts**
+
+Each table is named collection of _rows_. Each row of a given table has the same set of named _columns_, and each column is of a specific data type. Whereas columns have a fixed order in each row, it is important to remember that SQL does not guarantee the order of the rows within the table in any way (although they can be explicity sorted for display).
+
+Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server instance sonstitutes a database _cluster_.
+
+**2.3 Creating a New Table**
+
+You can create a new table by specifying the table name, along with all column names and their types:
+
+```
+-- Creating a New Table:
+--	A CREATE TABLE is used to create base tables.  PostgreSQL has
+--	its own set of built-in types.  (Note that SQL is case-
+--	insensitive.)
+-----------------------------
+
+CREATE TABLE weather (
+	city		varchar(80),
+	temp_lo		int,		-- low temperature
+	temp_hi		int,		-- high temperature
+	prcp		real,		-- precipitation
+	date		date
+);
+```
+
+
+
