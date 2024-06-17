@@ -13,3 +13,17 @@ CREATE TABLE weather (
 	date		date
 );
 
+CRETE TABLE cities (
+    name        varchar(80),
+    location    point
+);
+
+-- If you don´t neeed a table any longer or want to recreate it
+DROP TABLE tablename;
+
+-------------------------------
+-- INSERT statement is used to populate a table
+INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25,
+'1994-11-27');
+
+

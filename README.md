@@ -108,9 +108,9 @@ Once you have created a database, you can access it by:
 - Using an existing graphical frontend tool like pgAdmin or an office suite with ODBC or JDBC support to create and manipulate a database. These possibilities are not covered in this tutorial.
 - Writting a custom application, using one of the several avaible language bindings.
 
-Yoy can be activated <code>mydb</code> by typing the command:
+You can be activated <code>mydb</code> by typing the command:
 
-<code>$ psql mydb
+<code>$ psql mydb</code>
 
 You should see something like:
 
@@ -128,7 +128,6 @@ mydb=# \h
 # To getout of psql, type:
 mydb=# \q
 ```
-
 For more internal commands, type <code>\?</code> at the <code>psql</code> prompt.
 
 ### Chapter 2. The SQL Language
@@ -165,5 +164,28 @@ CREATE TABLE weather (
 );
 ```
 
+The second example will store cities and their associate geographical location:
 
+```
+CREATE TABLE cities (
+	name			varchar(80),
+	location		point
+);
+```
 
+The point type is an example of a PostgreSQL specific data type.
+
+If you don't need a table any longer or want to recreate it differently you can remove it using the following command:
+
+```
+DROP TABLE tablename;
+```
+
+**2.4 Population a Table with Rows**
+
+The <code>INSERT</code> statment is used to populate a table with rows:
+
+```
+INSERT INTO weather VALUES	
+
+```
