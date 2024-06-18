@@ -230,3 +230,16 @@ SELECT DISTINCT city FROM weather
 ```
 
 **2.6. Joins Between Tables**
+
+Queries that access multiple tables (or multiple instance of the same table) at one time are called _join_ queries. They combine rows from one table with rows from a second table, with an expression specifying which rows are to be paired. For example, to return all the weather records together with the location of the associated city the database needs to compare the <code>city</code> column of each row of the <code>weather</code> table with the <code>name</name> column of all rows in the <code>cities</code> table, and select the pairs of rows where the values match.
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/weather_cities.png)
+
+This would be accomplished by the following query:
+
+```
+SELECT * FROM weather JOIN cities ON city = name;
+```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/simple_join.png)
+

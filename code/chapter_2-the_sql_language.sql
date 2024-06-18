@@ -67,4 +67,7 @@ SELECT DISTINCT city FROM weather;
 SELECT DISTINCT city FROM weather
 	ORDER BY city;
 
+-- Joins between tables
+SELECT * FROM weather JOIN cities ON city = name;
+
 
