@@ -30,7 +30,7 @@ And because of the liberal license, PostgreSQL can be used, modifed, and distrib
 
 ### Chapter 1. Getting Started
 
-**1.1 Installation**
+**1.1. Installation**
 
 For my case, I use OS Ubuntu 22.04 and I followed the steps of official documantation that you can find here 👉🏼 [download PostgreSQL](https://www.postgresql.org/download/linux/ubuntu/).
 
@@ -62,7 +62,7 @@ $ systemctl status postgresql
 $ sudo -u postgres psql -c "SELECT version();"
 ```
 
-**1.2 Architecture Fundamentals**
+**1.2. Architecture Fundamentals**
 
 Before we proceed, you should understand the basic PostgreSQL system architecture. Understandig how the parts of PostgreSQL, interact will make this chapter somewhat clearer.
 
@@ -74,7 +74,7 @@ In database jargon, PostgreSQL, use a client/server model. A PostgreSQL session 
 
 As a typical of client/server application, the client and the server can be on different host. In that case they communicate over a TCP/IP network connection. You should keep this in mind, because the files that can be accessed on a client machine might not be accessible (or might only be accessible using a difrent file name) on the database server machine.
 
-**1.3 Creating a Database**
+**1.3. Creating a Database**
 
 The first to see whether you can access the database server is to try to create a database. A running PostgreSQL server can manage many database. Typically, a separate database is used for each project of for each user.
 
@@ -100,7 +100,7 @@ If you do not want to use your database anymore you can remove it. For example, 
 
 <code>$ dropdb mydb</code>
 
-**1.4 Accessing a Database**
+**1.4. Accessing a Database**
 
 Once you have created a database, you can access it by:
 
@@ -132,13 +132,13 @@ For more internal commands, type <code>\?</code> at the <code>psql</code> prompt
 
 ### Chapter 2. The SQL Language
 
-**2.1 Introduction**
+**2.1. Introduction**
 
 To start the tutorial, do the following:
 
 <code>$ psql -s mydb</code>
 
-**2.2 Concepts**
+**2.2. Concepts**
 
 Each table is named collection of _rows_. Each row of a given table has the same set of named _columns_, and each column is of a specific data type. Whereas columns have a fixed order in each row, it is important to remember that SQL does not guarantee the order of the rows within the table in any way (although they can be explicity sorted for display).
 
@@ -181,11 +181,52 @@ If you don't need a table any longer or want to recreate it differently you can 
 DROP TABLE tablename;
 ```
 
-**2.4 Population a Table with Rows**
+**2.4. Population a Table with Rows**
 
 The <code>INSERT</code> statment is used to populate a table with rows:
 
 ```
-INSERT INTO weather VALUES	
+INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+```
+
+More examples of how insert register inside the table, view the code folder.
+
+**2.5. Querying a Table**
+
+To retrive all the row of table <code>weather</code>, type:
 
 ```
+SELECT * FROM weather;
+```
+
+So the same result result would be had with:
+
+```
+SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
+```
+
+You can write expresion, no just simple column references, in the select list. For example, you can do:
+
+```
+SELECT city, (temp_lo + temp_hi)/2 AS temp_avg, date FROM weather;
+SELECT * FROM weather
+    WHERE city = 'San Francisco' AND prcp > 0.0;
+```
+
+You can request that the result of a query be returned in sorted order:
+
+```
+SELECT * FROM weather
+	ORDER BY city;
+SELECT * FROM weather
+    ORDER BY city, temp_lo;
+```
+
+You can request that duplicate rows be removed from the results of a query:
+```
+SELECT DISTINCT city FROM weather;
+SELECT DISTINCT city FROM weather
+	ORDER BY city;
+```
+
+**2.6. Joins Between Tables**

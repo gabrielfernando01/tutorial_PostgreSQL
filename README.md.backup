@@ -186,6 +186,47 @@ DROP TABLE tablename;
 The <code>INSERT</code> statment is used to populate a table with rows:
 
 ```
-INSERT INTO weather VALUES	
+INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+```
+
+More examples of how insert register inside the table, view the code folder.
+
+**2.5. Querying a Table**
+
+To retrive all the row of table <code>weather</code>, type:
 
 ```
+SELECT * FROM weather;
+```
+
+So the same result result would be had with:
+
+```
+SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
+```
+
+You can write expresion, no just simple column references, in the select list. For example, you can do:
+
+```
+SELECT city, (temp_lo + temp_hi)/2 AS temp_avg, date FROM weather;
+SELECT * FROM weather
+    WHERE city = 'San Francisco' AND prcp > 0.0;
+```
+
+You can request that the result of a query be returned in sorted order:
+
+```
+SELECT * FROM weather
+	ORDER BY city;
+SELECT * FROM weather
+    ORDER BY city, temp_lo;
+```
+
+You can request that duplicate rows be removed from the results of a query:
+```
+SELECT DISTINCT city FROM weather;
+SELECT DISTINCT city FROM weather
+	ORDER BY city;
+```
+
+**2.6. Joins Between Tables**
