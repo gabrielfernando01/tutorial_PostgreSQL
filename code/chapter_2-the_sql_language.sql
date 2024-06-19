@@ -69,5 +69,22 @@ SELECT DISTINCT city FROM weather
 
 -- Joins between tables
 SELECT * FROM weather JOIN cities ON city = name;
+SELECT city, temp_lo, temp_hi, prcp, date, location
+    FROM weather JOIN cities ON city = name;
 
+-- If there were duplicate column names in the two tables
+-- you'd need to qualify the column names to show which one you meant
+SELECT weather.city, weather.temp_lo, weather.temp_hi,
+weather.prcp, weather.date, cities.location
+	FROM weather JOIN cities ON weather.city = cities.name;
 
+-- Join queries of the kind seen thus far can also be written 
+-- in this form:
+SELECT * FROM weather, cities
+	WHERE city = name;
+
+-- Outer Join
+SELECT * FROM weather LEFT OUTER JOIN cities ON 
+    weather.city = cities.name;
+
+SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
