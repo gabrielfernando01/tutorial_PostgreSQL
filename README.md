@@ -288,7 +288,7 @@ SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
 In the case of **FULL OUTER JOIN** make this👇🏼:
 
 ```
-SELECT * FROM weather FULL OTHER JOIN cities ON weather.city = cities.name
+SELECT * FROM weather FULL OUTER JOIN cities ON weather.city = cities.name
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/full_outer_join.png)
