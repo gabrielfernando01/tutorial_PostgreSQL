@@ -233,9 +233,11 @@ SELECT DISTINCT city FROM weather
 
 Queries that access multiple tables (or multiple instance of the same table) at one time are called _join_ queries. They combine rows from one table with rows from a second table, with an expression specifying which rows are to be paired. For example, to return all the weather records together with the location of the associated city the database needs to compare the <code>city</code> column of each row of the <code>weather</code> table with the <code>name</code> column of all rows in the <code>cities</code> table, and select the pairs of rows where the values match.
 
+So far we have declared a couple of tables: weather and cities 👇🏼:
+
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/weather_cities.png)
 
-This would be accomplished by the following query:
+This would be accomplished by the following 👇🏼 query:
 
 ```
 SELECT * FROM weather JOIN cities ON city = name;
@@ -256,7 +258,7 @@ weather.prcp, weather.date, cities.location
 	FROM weather JOIN cities ON weather.city = cities.name;
 ```
 
-Join queries of the kind seen thus far can also be written in this form:
+Join queries of the kind seen thus far can also be written in this form 👇🏼:
 
 ```
 SELECT * FROM weather, cities
@@ -269,7 +271,7 @@ Now we will figure out how we can get the Hayward records back in. What we want 
 SELECT * FROM weather LEFT OUTER JOIN cities ON weather.city = cities.name;
 ```
 
-This query is called a left outer join because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
+This query is called a **left outer join** because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
 
 Let's see the query below 👇🏼:
 
@@ -281,4 +283,5 @@ In the case of <code>RIGHT OUTER JOIN</code> the aspect is the follow 👇🏼:
 SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
 ```
 
-![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/left_outer_join.png)
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/right_outer_join.png)
+
