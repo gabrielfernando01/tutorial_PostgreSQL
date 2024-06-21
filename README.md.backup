@@ -297,8 +297,11 @@ If we want to query a table with respect to itself, let's say query what the tem
 
 ```
 SELECT w1.city, w1.temp_lo AS low, w1.temp_hi AS high, w2.city, w2.temp_lo AS low,  
-	w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND 	w1.temp_hi > w2.temp_hi;
+	w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND  
+	w1.temp_hi > w2.temp_hi;
 ```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/self_join.png)
 
 Here we have relabeled the weather table as w1 and w2 to be able to distinguish the left and right side
 of the join. You can also use these kinds of aliases in other queries to save some typing, e.g.:
@@ -319,6 +322,13 @@ As an example, we can find the highest low-temperature reading anywhere with:
 SELECT max(temp_lo) FROM weather;
 ```
 
+Also if we wish know what cities have this register (max(tem_lo), we have typing:
+
+```
+SELECT city FROM weather
+	WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+```
+
 Aggregates are also very useful in combination with GROUP BY clauses. For example, we can get the number of readings and the maximum low temperature observed in each city with:
 
 ```
@@ -326,4 +336,17 @@ SELECT city, count(*),  max(temp_lo)
 	FROM weather
 	GROUP BY city;
 ```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_comb_groupby.png)
+
+which gives us one output row per city. Each aggregate result is computed over the table rows matching that city. We can filter these grouped rows using HAVING:
+
+```
+SELECT city, count(*), max(temp_lo)
+	FROM weather
+	GROUP BY city
+	HAVING max(temp_lo) < 40;
+```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_having.png)
 

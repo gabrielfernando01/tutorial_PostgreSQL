@@ -113,4 +113,10 @@ SELECT city, count(*), max(temp_lo)
     FROM weather
     GROUP BY city;
 
+-- We cand filter grouped rows using HAVING
+SELECT city, count(*), max(temp_lo)
+    FROM weather
+    GROUP BY city
+    HAVING max(temp_lo) < 40;
+
 
