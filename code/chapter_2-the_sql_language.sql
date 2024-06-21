@@ -83,8 +83,34 @@ weather.prcp, weather.date, cities.location
 SELECT * FROM weather, cities
 	WHERE city = name;
 
--- Outer Join
+-- Left outer join
 SELECT * FROM weather LEFT OUTER JOIN cities ON 
     weather.city = cities.name;
 
+-- Right outer join
 SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
+
+-- Full outer join
+SELECT * FROM weather FULL OUTER JOIN cities ON weather.city = cities.name
+
+-- Make a query about itself
+SELECT w1.city, w1.temp_lo AS low, w1.temp_hi AS high,
+    w2.city, w2.temp_lo AS low, w2.temp_hi AS high
+    FROM weather w1 JOIN weather w2
+    ON w1.temp_lo < w2.temp_lo AND w1.temp_hi > w2.temp_hi;
+
+-- A typical type of relabeling is as follows:
+SELECT * FROM weather w JOIN cities c ON w.city = c.name;
+
+-- Aggregate functions
+SELECT max(temp_lo) FROM weather;
+
+-- If we want to know which city the previous record corresponds to, we do:
+SELECT city FROM weather
+    WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+
+SELECT city, count(*), max(temp_lo)
+    FROM weather
+    GROUP BY city;
+
+
