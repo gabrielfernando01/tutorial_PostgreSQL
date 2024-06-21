@@ -271,13 +271,13 @@ Now we will figure out how we can get the Hayward records back in. What we want 
 SELECT * FROM weather LEFT OUTER JOIN cities ON weather.city = cities.name;
 ```
 
-This query is called a **left outer join** because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
+This query is called a **LEFT OUTER JOIN** because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
 
 Let's see the query below 👇🏼:
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/left_outer_join.png)
 
-In the case of <code>RIGHT OUTER JOIN</code> the aspect is the follow 👇🏼:
+In the case of **RIGHT OUTER JOIN** the aspect is the follow 👇🏼:
 
 ```
 SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
@@ -285,3 +285,10 @@ SELECT * FROM weather RIGHT OUTER JOIN cities ON weather.city = cities.name
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/right_outer_join.png)
 
+In the case of **FULL OUTER JOIN** make this👇🏼:
+
+```
+SELECT * FROM weather FULL OTHER JOIN cities ON weather.city = ci
+```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/full_outer_join.png)
