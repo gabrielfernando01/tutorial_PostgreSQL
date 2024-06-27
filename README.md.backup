@@ -247,14 +247,14 @@ SELECT * FROM weather JOIN cities ON city = name;
 
 ```
 SELECT city, temp_lo, temp_hi, prcp, date, location
-    FROM weather JOIN cities ON city = name;
+  FROM weather JOIN cities ON city = name;
 ```
 
 If there were duplicate column names in the two tables you'd need to _qualify_ the column names to show which one you meant, as in:
 
 ```
 SELECT weather.city, weather.temp_lo, weather.temp_hi,
-weather.prcp, weather.date, cities.location
+  weather.prcp, weather.date, cities.location
   FROM weather JOIN cities ON weather.city = cities.name;
 ```
 
@@ -297,8 +297,8 @@ If we want to query a table with respect to itself, let's say query what the tem
 
 ```
 SELECT w1.city, w1.temp_lo AS low, w1.temp_hi AS high, w2.city, w2.temp_lo AS low,  
-	w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND  
-	w1.temp_hi > w2.temp_hi;
+  w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND  
+  w1.temp_hi > w2.temp_hi;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/self_join.png)
@@ -326,15 +326,15 @@ Also if we wish know what cities have this register (max(tem_lo), we have typing
 
 ```
 SELECT city FROM weather
-	WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+  WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
 ```
 
 Aggregates are also very useful in combination with GROUP BY clauses. For example, we can get the number of readings and the maximum low temperature observed in each city with:
 
 ```
 SELECT city, count(*),  max(temp_lo)
-	FROM weather
-	GROUP BY city;
+  FROM weather
+  GROUP BY city;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_comb_groupby.png)
@@ -343,9 +343,9 @@ which gives us one output row per city. Each aggregate result is computed over t
 
 ```
 SELECT city, count(*), max(temp_lo)
-	FROM weather
-	GROUP BY city
-	HAVING max(temp_lo) < 40;
+  FROM weather
+  GROUP BY city
+  HAVING max(temp_lo) < 40;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_having.png)

@@ -209,6 +209,7 @@ You can write expresion, no just simple column references, in the select list. F
 
 ```
 SELECT city, (temp_lo + temp_hi)/2 AS temp_avg, date FROM weather;
+
 SELECT * FROM weather
   WHERE city = 'San Francisco' AND prcp > 0.0;
 ```
@@ -218,6 +219,7 @@ You can request that the result of a query be returned in sorted order:
 ```
 SELECT * FROM weather
   ORDER BY city;
+
 SELECT * FROM weather
   ORDER BY city, temp_lo;
 ```
@@ -225,6 +227,7 @@ SELECT * FROM weather
 You can request that duplicate rows be removed from the results of a query:
 ```
 SELECT DISTINCT city FROM weather;
+
 SELECT DISTINCT city FROM weather
   ORDER BY city;
 ```
@@ -247,14 +250,14 @@ SELECT * FROM weather JOIN cities ON city = name;
 
 ```
 SELECT city, temp_lo, temp_hi, prcp, date, location
-    FROM weather JOIN cities ON city = name;
+  FROM weather JOIN cities ON city = name;
 ```
 
 If there were duplicate column names in the two tables you'd need to _qualify_ the column names to show which one you meant, as in:
 
 ```
 SELECT weather.city, weather.temp_lo, weather.temp_hi,
-weather.prcp, weather.date, cities.location
+  weather.prcp, weather.date, cities.location
   FROM weather JOIN cities ON weather.city = cities.name;
 ```
 
