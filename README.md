@@ -210,23 +210,23 @@ You can write expresion, no just simple column references, in the select list. F
 ```
 SELECT city, (temp_lo + temp_hi)/2 AS temp_avg, date FROM weather;
 SELECT * FROM weather
-    WHERE city = 'San Francisco' AND prcp > 0.0;
+  WHERE city = 'San Francisco' AND prcp > 0.0;
 ```
 
 You can request that the result of a query be returned in sorted order:
 
 ```
 SELECT * FROM weather
-	ORDER BY city;
+  ORDER BY city;
 SELECT * FROM weather
-    ORDER BY city, temp_lo;
+  ORDER BY city, temp_lo;
 ```
 
 You can request that duplicate rows be removed from the results of a query:
 ```
 SELECT DISTINCT city FROM weather;
 SELECT DISTINCT city FROM weather
-	ORDER BY city;
+  ORDER BY city;
 ```
 
 **2.6. Joins Between Tables**
@@ -255,14 +255,14 @@ If there were duplicate column names in the two tables you'd need to _qualify_ t
 ```
 SELECT weather.city, weather.temp_lo, weather.temp_hi,
 weather.prcp, weather.date, cities.location
-	FROM weather JOIN cities ON weather.city = cities.name;
+  FROM weather JOIN cities ON weather.city = cities.name;
 ```
 
 Join queries of the kind seen thus far can also be written in this form 👇🏼:
 
 ```
 SELECT * FROM weather, cities
-	WHERE city = name;
+  WHERE city = name;
 ```
 
 Now we will figure out how we can get the Hayward records back in. What we want the query to do is to scan the <code>weather</code> table and for each row to find the matching <code>cities</code> row(s). If no matching row is found we want some "empty values" to be substituted for the <code>cities</code> tables's column. This kind of query is called an _outer join_. (The joins we have seen so far are _inner joins_.) The command look like this:
@@ -297,8 +297,8 @@ If we want to query a table with respect to itself, let's say query what the tem
 
 ```
 SELECT w1.city, w1.temp_lo AS low, w1.temp_hi AS high, w2.city, w2.temp_lo AS low,  
-	w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND  
-	w1.temp_hi > w2.temp_hi;
+  w2.temp_hi AS high FROM weather w1 JOIN weather w2 ON w1.temp_lo < w2.temp_lo AND  
+  w1.temp_hi > w2.temp_hi;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/self_join.png)
@@ -326,15 +326,15 @@ Also if we wish know what cities have this register (max(tem_lo), we have typing
 
 ```
 SELECT city FROM weather
-	WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+  WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
 ```
 
 Aggregates are also very useful in combination with GROUP BY clauses. For example, we can get the number of readings and the maximum low temperature observed in each city with:
 
 ```
 SELECT city, count(*),  max(temp_lo)
-	FROM weather
-	GROUP BY city;
+  FROM weather
+  GROUP BY city;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_comb_groupby.png)
@@ -343,9 +343,9 @@ which gives us one output row per city. Each aggregate result is computed over t
 
 ```
 SELECT city, count(*), max(temp_lo)
-	FROM weather
-	GROUP BY city
-	HAVING max(temp_lo) < 40;
+  FROM weather
+  GROUP BY city
+  HAVING max(temp_lo) < 40;
 ```
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/agg_having.png)
