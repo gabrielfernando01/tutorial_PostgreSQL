@@ -15,7 +15,7 @@ PostgreSQL is an open-source descendant of this original Berkeley code. It suppo
 - transactional integrity
 - multiversion concurrency control
 
-Also, PostgreSQL can be extended by the user in many ways, for example by adding new
+Also, PostgreSQL can be extended by the user in many ways, for example by adding new:
 
 - data types
 - functions
