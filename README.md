@@ -74,7 +74,7 @@ In database jargon, PostgreSQL, use a client/server model. A PostgreSQL session 
 
 As a typical of client/server application, the client and the server can be on different host. In that case they communicate over a TCP/IP network connection. You should keep this in mind, because the files that can be accessed on a client machine might not be accessible (or might only be accessible using a difrent file name) on the database server machine.
 
-**1.3. Creating a Database**
+**1.3. Creating a Database 🛢**
 
 The first to see whether you can access the database server is to try to create a database. A running PostgreSQL server can manage many database. Typically, a separate database is used for each project of for each user.
 
@@ -100,7 +100,7 @@ If you do not want to use your database anymore you can remove it. For example, 
 
 <code>$ dropdb mydb</code>
 
-**1.4. Accessing a Database**
+**1.4. Accessing a Database 🛢**
 
 Once you have created a database, you can access it by:
 
@@ -118,8 +118,12 @@ You should see something like:
 
 These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <psql>. Try out these commands:  
 
-<code>mydb=# **SELECT version();**</code>
-<code>mydb=# **SELECT current_date;**</code>
+```mydb=# **SELECT version();**
+```
+
+```
+mydb=# **SELECT current_date;**
+```
 
 ```
 # You can get help on the syntax of various PostgreSQL SQL commands by typing:
