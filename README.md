@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/cover.png)
 
-# Tutorial PostgreSQL
+# Tutorial PostgreSQL 🐘
 
 ### What is PostgreSQL?
 
@@ -118,12 +118,9 @@ You should see something like:
 
 These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <psql>. Try out these commands:  
 
-```mydb=# **SELECT version();**
-```
+mydb=# **SELECT version();**
 
-```
 mydb=# **SELECT current_date;**
-```
 
 ```
 # You can get help on the syntax of various PostgreSQL SQL commands by typing:
