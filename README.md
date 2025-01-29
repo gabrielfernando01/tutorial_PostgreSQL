@@ -2,7 +2,7 @@
 
 # Tutorial PostgreSQL 🐘
 
-### What is PostgreSQL?
+### What is PostgreSQL 🐘?
 
 PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Departament. POSTGRES pioneered many concepts that only became avaible in some commercial database system much later.
 
@@ -62,7 +62,7 @@ $ systemctl status postgresql
 $ sudo -u postgres psql -c "SELECT version();"
 ```
 
-**1.2. Architecture Fundamentals**
+**1.2. Architecture Fundamentals 📐**
 
 Before we proceed, you should understand the basic PostgreSQL system architecture. Understandig how the parts of PostgreSQL, interact will make this chapter somewhat clearer.
 
@@ -118,11 +118,9 @@ You should see something like:
 
 These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <psql>. Try out these commands:  
 
-```
 mydb=# **SELECT version();**
 
-mydb=# **SELECT current_date;**
-```
+mydb=# **SELECT current_date**
 
 ```
 # You can get help on the syntax of various PostgreSQL SQL commands by typing:
@@ -133,7 +131,7 @@ mydb=# \q
 ```
 For more internal commands, type <code>\?</code> at the <code>psql</code> prompt.
 
-### Chapter 2. The SQL Language
+### Chapter 2. The SQL Language 🛢️
 
 **2.1. Introduction**
 
