@@ -13,7 +13,7 @@ CREATE TABLE weather (
   date		    date
 );
 
-CRETE TABLE cities (
+CREATE TABLE cities (
   name        varchar(80),
   location    point
 );
@@ -44,7 +44,7 @@ INSERT INTO weather (date, city, temp_hi, temp_lo)
 -- To retrive all the rows of table weather, type:
 SELECT * FROM weather;
 
--- So the same result result would be had with:
+-- So the same result would be had with:
 SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
 
 -- You can do:
@@ -71,6 +71,7 @@ SELECT DISTINCT city FROM weather
 -- Joins between tables
 SELECT * FROM weather JOIN cities ON city = name;
 
+/* In practice this is undesirable, though, so you will probably want to list the output columns explicitly rather than using *:*/
 SELECT city, temp_lo, temp_hi, prcp, date, location
     FROM weather JOIN cities ON city = name;
 

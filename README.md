@@ -116,7 +116,7 @@ You should see something like:
 
 <code>mydb=#</code>
 
-These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <psql>. Try out these commands:  
+These line printed out by <code>psql</code> is the prompt, and it indicates that <code>psql</code> is listening to you and that you can type SQL queries into a work space maintained by <code>psql</code>. Try out these commands:
 
 mydb=# **SELECT version();**
 
@@ -229,6 +229,7 @@ You can request that duplicate rows be removed from the results of a query:
 ```
 SELECT DISTINCT city FROM weather;
 
+# You can ensure consistent results by using DISTINCT and ORDER BY together:
 SELECT DISTINCT city FROM weather
   ORDER BY city;
 ```
@@ -249,10 +250,17 @@ SELECT * FROM weather JOIN cities ON city = name;
 
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/inner_join.png)
 
+Observe two things about the result set:
+
+- There is no result row for the city of Hayward.
+- There are two columns containing the city name.
+
 ```
 SELECT city, temp_lo, temp_hi, prcp, date, location
   FROM weather JOIN cities ON city = name;
 ```
+
+![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/two_things.png)
 
 If there were duplicate column names in the two tables you'd need to _qualify_ the column names to show which one you meant, as in:
 
