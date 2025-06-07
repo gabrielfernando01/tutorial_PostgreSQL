@@ -1,8 +1,8 @@
 ![](https://raw.githubusercontent.com/gabrielfernando01/tutorial_PostgreSQL/main/images/cover.png)
 
-# Tutorial PostgreSQL 🐘
+# 🐘 Tutorial PostgreSQL. 
 
-### What is PostgreSQL 🐘?
+### 🐘 What is PostgreSQL?
 
 PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Departament. POSTGRES pioneered many concepts that only became avaible in some commercial database system much later.
 
@@ -120,7 +120,7 @@ These line printed out by <code>psql</code> is the prompt, and it indicates that
 
 mydb=# **SELECT version();**
 
-mydb=# **SELECT current_date**
+mydb=# **SELECT current_date;**
 
 ```
 # You can get help on the syntax of various PostgreSQL SQL commands by typing:
